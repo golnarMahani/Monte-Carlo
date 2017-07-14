@@ -8,6 +8,7 @@ while(count<50)
     state=randi([2 5],1);
     episode=state;
     rewards=0;
+    returns=0;
     while(state~=1 && state~=6)
         action= sum(rand >= cumsum([0, p_s_a(state,1), p_s_a(state,2)]));
         [state,reward]=garbageEnv(action,state);

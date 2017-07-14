@@ -1,6 +1,5 @@
 function [ valuefunction ] = MC_FV_PE( p_s_a,gamma )
 valuefunction=zeros(1,6);
-returns=zeros(1,6);
 visited=zeros(1,6);
 count=1;
 while(count<50)
@@ -8,6 +7,7 @@ while(count<50)
     state=randi([2 5],1);
     episode=state;
     rewards=0;
+    returns=zeros(1,6);
     while(state~=1 && state~=6)
         action= sum(rand >= cumsum([0, p_s_a(state,1), p_s_a(state,2)]));
         [state,reward]=garbageEnv(action,state);

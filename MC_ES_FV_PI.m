@@ -25,10 +25,12 @@ while(count<1000)
     
     %% return calculation for each episode--first visit approach
     epi_states=unique(epi_state_action,'rows');
-    epi_states(epi_states(:,1)==6 | epi_states(:,1)==1)=[];       
+    epi_states(epi_states(:,1)==6 | epi_states(:,1)==1)=[];   
+    returns=0;
     for i=1:size(epi_states,1),
         counter=0;
-        for s=find(ismember(epi_states(i,:),epi_state_action),1,'first'):size(epi_state_action,1),
+        [Lia, Locb] = ismember(epi_states(i,:),epi_state_action), 'rows');
+        for s=Locb:size(epi_state_action,1),
            returns(epi_states(i,2),epi_states(i,1))=returns(epi_states(i,2),epi_states(i,1))+rewards(s)*gamma^counter;
            counter=counter+1;
         end

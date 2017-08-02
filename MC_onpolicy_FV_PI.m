@@ -2,7 +2,7 @@ function [ policy ] = MC_onpolicy_FV_PI( p_s_a,gamma,epsilon )
 Q_s_a=zeros(2,6);
 visited=zeros(2,6);
 count=1;
-while(count<100)
+while(count<10)
     %% generate an episode with policy p_s_a
     state=randi([2 5],1);    
     episode=state;
@@ -44,11 +44,11 @@ while(count<100)
     disp(epi_states);
     for i=1:size(epi_states,1),
         if(Q_s_a(1,epi_states(i))>Q_s_a(2,epi_states(i)))
-            p_s_a(epi_states(i),1)=p_s_a(epi_states(i),1)+(epsilon/2);
-            p_s_a(epi_states(i),2)=p_s_a(epi_states(i),2)-(epsilon/2);
-        elseif(Q_s_a(1,epi_states(i))<Q_s_a(2,epi_states(i)))
-            p_s_a(epi_states(i),1)=p_s_a(epi_states(i),1)-(epsilon/2);
+            p_s_a(epi_states(i),1)=p_s_a(epi_states(i),1)+1-(epsilon/2);
             p_s_a(epi_states(i),2)=p_s_a(epi_states(i),2)+(epsilon/2);
+        elseif(Q_s_a(1,epi_states(i))<Q_s_a(2,epi_states(i)))
+            p_s_a(epi_states(i),1)=p_s_a(epi_states(i),1)+(epsilon/2);
+            p_s_a(epi_states(i),2)=p_s_a(epi_states(i),2)+1-(epsilon/2);
         end
     end
     count=count+1;

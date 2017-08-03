@@ -44,11 +44,11 @@ while(count<10)
     disp(epi_states);
     for i=1:size(epi_states,1),
         if(Q_s_a(1,epi_states(i))>Q_s_a(2,epi_states(i)))
-            p_s_a(epi_states(i),1)=p_s_a(epi_states(i),1)+1-(epsilon/2);
-            p_s_a(epi_states(i),2)=p_s_a(epi_states(i),2)+(epsilon/2);
+            p_s_a(epi_states(i),1)=1-(epsilon/2);
+            p_s_a(epi_states(i),2)=(epsilon/2);
         elseif(Q_s_a(1,epi_states(i))<Q_s_a(2,epi_states(i)))
-            p_s_a(epi_states(i),1)=p_s_a(epi_states(i),1)+(epsilon/2);
-            p_s_a(epi_states(i),2)=p_s_a(epi_states(i),2)+1-(epsilon/2);
+            p_s_a(epi_states(i),1)=(epsilon/2);
+            p_s_a(epi_states(i),2)=1-(epsilon/2);
         end
     end
     count=count+1;
